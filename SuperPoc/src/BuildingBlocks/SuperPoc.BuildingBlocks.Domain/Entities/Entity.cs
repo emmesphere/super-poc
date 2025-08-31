@@ -8,6 +8,17 @@ namespace SuperPoc.BuildingBlocks.Domain.Entities
         protected Entity() { }
         protected Entity(TId id) => Id = id;
 
+        public bool IsDeleted { get; private set; }
+        public DateTime? DeletedAt { get; private set; }
+
+        public void MarkAsDeleted()
+        {
+            if (IsDeleted) return;
+
+            IsDeleted = true;
+            DeletedAt = DateTime.UtcNow;
+        }
+
         public override bool Equals(object? obj)
         {
             if (obj is not Entity<TId> other) return false;
