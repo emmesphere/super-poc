@@ -18,7 +18,7 @@ namespace SuperPoc.BuildingBlocks.Domain.Entities
 
         public void UpdateEmail(Email newEmail)
         {
-            string oldEmail = Email.Value!;
+            var oldEmail = Email.Value!;
             Email = newEmail;
             AddDomainEvent(new CustomerEmailUpdated(Id, oldEmail!, newEmail.Value!));
         }
